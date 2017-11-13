@@ -265,7 +265,7 @@ bool iterar_nodo_mod(abb_t* abb,nodo_t* nodo, const char* ini, const char* fin,b
     return true;
   int comparacion_ini=abb->abb_comparar_clave(nodo->clave,ini);
   int comparacion_fin=abb->abb_comparar_clave(nodo->clave,fin);
-  if(comparacion_ini>=0){
+  if(comparacion_ini>0){
     if(!iterar_nodo_mod(abb,nodo->izq,ini,fin,visitar,extra))
       return false;
   }
@@ -273,8 +273,8 @@ bool iterar_nodo_mod(abb_t* abb,nodo_t* nodo, const char* ini, const char* fin,b
     if(!visitar(nodo->clave,nodo->valor,extra))
       return false;
   }
-  if(comparacion_ini<0){
-    if(!iterar_nodo_mod(abb,nodo->izq,ini,fin,visitar,extra))
+  if(comparacion_fin<0){
+    if(!iterar_nodo_mod(abb,nodo->der,ini,fin,visitar,extra))
       return false;
   }
   return true;
